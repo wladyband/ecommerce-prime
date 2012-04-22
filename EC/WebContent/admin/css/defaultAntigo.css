@@ -1,0 +1,129 @@
+/* CSS Document */
+.ui-widget {
+	font-size: 12px !important;
+	margin-top:6px;
+} 
+
+html {
+	height: 100%;
+	margin: 0px 0px 1px 0px;
+	padding: 0;
+}
+
+html * {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	font-size: 12px;
+	font-family: Arial ,verdana, helvetic;
+	background-color: #FFFFFF;
+	padding: 0;
+	margin: 0;
+	color: #333;
+}
+
+/*----------------------------------*/
+/*  configuracao geral da tag menu */
+/*--------------------------------*/
+#menu {
+	width:200px;
+	font: bold 11px arial, verdana, sans-serif;
+	padding:0px;
+	margin:0px;
+	background-color:#f0f0f0;
+	color: #fff;
+	text-align:left;
+	border: solid 2px #CACACA;
+	float:left;
+	position: relative;
+         top:15px;
+}
+
+#menu h4 {
+	color: #78B400;
+        text-align: center;
+	padding-top:5px;
+	font-size:14px;
+	padding-bottom:10px;
+	text-transform:uppercase;	
+}
+
+#menu ul {
+	list-style: none;
+	margin: 0;
+	padding:0 0 30px 30px;
+	width:170px;/*determina um tamanho para que o IE nao se confunda*/
+}
+#menu li {
+	margin: 0;
+       padding-bottom:10px;
+}
+#menu li a {
+	margin: 0;
+	padding:0;
+	text-decoration: none;
+	display: block;
+	background-position:0 5px; color:#010101; text-decoration:none; padding-left:10px;
+}
+#menu li a:hover {
+	color:#78B400;	
+
+}
+
+/*------------------------------------*/
+/* configuracao geral da tag conteudo*/
+/*----------------------------------*/
+#conteudo {
+	padding:15px;
+	float:left;
+	position: relative;
+}
+
+
+#formulario fieldset{
+	padding: 20px;
+	border: solid #CCCCCC 1px;
+	margin: 0 auto;
+	text-align: left;
+	width: 350px;
+}
+#formulario legend{
+	font-weight: bold;
+	color: #c03;
+	font-size: 11pt;
+	letter-spacing: 1px;
+	padding: 20px;
+}
+
+#formulario .campo{
+	border-top: solid #333333 1px;
+	border-left: solid #333333 1px;
+	border-bottom: solid #CCCCCC 1px;
+	border-right: solid #CCCCCC 1px;
+	font-size: 13px;
+	margin-bottom: 10px;
+	color: #0E0659;
+}
+#formulario label{
+	display: block;
+	width: 80px;
+	float: left;
+	color: #000;
+	border-bottom: 1px solid #f1f1f1;
+}
+
+#formulario fieldset ul{
+	padding: 0 0 25px 15px;
+        
+}
+
+#formulario li{
+	list-style: none;
+}
+
+
+#formulario .msg{
+	padding-left: 10px;
+}

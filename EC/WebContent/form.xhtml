@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:p="http://primefaces.org/ui" lang="pt-br">
+<body>
+
+	<ui:composition template="template/template.xhtml">
+
+		<ui:define name="titulo">
+                Fechar Pedido - Novo Usuario
+            </ui:define>
+
+		<ui:define name="conteudo">
+			<p:panel header="Formulario do Usuario">
+				<h:panelGrid columns="2" cellpadding="5">
+					<h:outputText value="Nome:" />
+					<p:inputText id="nome" value="#{usuarioController.usuario.nome}"
+						required="true">
+					</p:inputText>
+
+					<h:outputText value="E-mail:" />
+					<p:inputText id="email" value="#{usuarioController.usuario.email}"
+						required="true" validator="#{usuarioController.validaEmail}"
+						requiredMessage="E-mail obrigatorio">
+					</p:inputText>
+
+					<h:outputText value="Senha:" />
+					<p:password id="senha" value="#{usuarioController.usuario.senha}"
+						required="true" requiredMessage="Senha obrigatoria"
+						feedback="false">
+					</p:password>
+
+
+					<h:outputText value="Endereco:" />
+					<p:inputText id="endereco"
+						value="#{usuarioController.usuario.endereco}" required="true">
+					</p:inputText>
+
+					<h:outputText value="Bairro:" />
+					<p:inputText id="bairro"
+						value="#{usuarioController.usuario.bairro}" required="true">
+					</p:inputText>
+
+					<h:outputText value="Cidade:" />
+					<p:inputText id="cidade"
+						value="#{usuarioController.usuario.cidade}" required="true">
+					</p:inputText>
+
+					<h:outputText value="Estado:" />
+					<p:inputText id="estado"
+						value="#{usuarioController.usuario.estado}" required="true">
+					</p:inputText>
+
+					<h:outputText value="CEP:" />
+					<p:inputText id="cep" value="#{usuarioController.usuario.cep}"
+						required="true">
+					</p:inputText>
+
+
+					<f:facet name="footer">
+						<p:commandButton id="salvar" value="Confirmar"
+							action="#{usuarioController.salvar}" ajax="false" />
+					</f:facet>
+				</h:panelGrid>
+				<h:outputText
+					value="*Seu e-mail sera usado como login (nome de usuario)." />
+			</p:panel>
+
+		</ui:define>
+
+	</ui:composition>
+
+</body>
+</html>
