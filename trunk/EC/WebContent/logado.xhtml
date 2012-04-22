@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:p="http://primefaces.org/ui" lang="pt-br">
+<body>
+
+	<ui:composition template="/template/template.xhtml">
+
+		<ui:define name="titulo">
+               Area do Usuario
+            </ui:define>
+
+		<ui:define name="conteudo">
+			<p:panel header="Area do Usuario - #{usuarioController.usuario.nome}">
+				<h:panelGrid columns="2" cellpadding="5">
+					<p:commandButton id="logout" value="Logout"
+						action="#{usuarioController.logout}" ajax="false" immediate="true" />
+					<p:commandButton id="atualiza" value="Atualizar Dados"
+						action="atualiza" ajax="false" immediate="true" />
+				</h:panelGrid>
+
+				<p:fieldset legend="Suas Compras"
+					rendered="#{carrinhoController.qtdProdutosAdicionados > 0}">
+
+					<p:dataTable id="cartTable" var="item"
+						value="#{carrinhoController.carrinho}" style="width: 450px">
+						<p:column id="modelHeader">
+							<f:facet name="header">  
+				                    Descricao  
+				            </f:facet>
+							<h:outputText value="#{item.produto.prodNome}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">  
+				                    Quantidade  
+				            </f:facet>
+							<h:outputText value="#{item.qtd}" />
+						</p:column>
+
+						<p:column width="50">
+							<f:facet name="header">  
+				                    Preco Unitario  
+				            </f:facet>
+							<h:outputText value="#{item.preco}">
+								<f:convertNumber type="currency" />
+							</h:outputText>
+						</p:column>
+
+						<p:column width="50">
+							<f:facet name="header">  
+				                    Total Parcial  
+				            </f:facet>
+							<h:outputText value="#{item.subTotal}">
+								<f:convertNumber type="currency" />
+							</h:outputText>
+						</p:column>
+						
+						<f:facet name="footer">
+							<h:outputText value="Total a Pagar: " />
+							<h:outputText value="#{carrinhoController.car.total}">
+								<f:convertNumber type="currency" />
+							</h:outputText>
+						</f:facet>
+							
+
+					</p:dataTable>
+
+				</p:fieldset>
+				<br />
+				<p:fieldset legend="Sua Conta">
+					<h:panelGrid columns="2" cellpadding="5">
+						<h:outputText value="Nome no Cartao:" />
+						<p:inputText id="ccNome"
+							value="#{usuarioController.pedido.ccNome}" required="true">
+						</p:inputText>
+
+						<h:outputText value="Tipo de Cartao:" />
+						<p:selectOneMenu id="ccTipo"
+							value="#{usuarioController.pedido.ccNome}">
+							<f:selectItem itemValue="1" itemLabel="Visa" />
+							<f:selectItem itemValue="2" itemLabel="Master Card" />
+							<f:selectItem itemValue="3" itemLabel="AMEX" />
+						</p:selectOneMenu>
+
+						<h:outputText value="Numero:" />
+						<p:inputText id="ccNumero"
+							value="#{usuarioController.pedido.ccNumero}" required="true"
+							validatorMessage="Formato: 9999-9999-9999-9999,com '-' ou espa�o">
+							<f:validator validatorId="validaCartao" />
+						</p:inputText>
+
+						<h:outputText value="Validade:" />
+						<h:panelGroup>
+							<p:inputText id="ccMExp"
+								value="#{usuarioController.pedido.ccMExp}" size="2"
+								required="true">
+							</p:inputText>
+							<h:outputText value="/" />
+							<p:inputText id="ccAExp"
+								value="#{usuarioController.pedido.ccAExp}" size="5"
+								required="true">
+							</p:inputText>
+						</h:panelGroup>
+
+						<f:facet name="footer">
+							<p:commandButton id="confirmar" value="Confirmar"
+								action="#{usuarioController.finalizaCompra}" ajax="false" />
+						</f:facet>
+					</h:panelGrid>
+				</p:fieldset>
+			</p:panel>
+		</ui:define>
+
+	</ui:composition>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+<body>
+
+	<ui:composition template="template.xhtml">
+
+		<ui:define name="titulo">
+		Area Administrativa
+	</ui:define>
+
+		<ui:define name="conteudo">
+
+			<h:panelGrid columns="5" cellpadding="5">
+				<h:outputText value="Data Inicial:" />
+				<p:calendar value="#{usuarioController.data1}" id="popUpData1"
+					pattern="dd/MM/yyyy" locale="pt" required="true"
+					requiredMessage="Data Inicial Obrigatoria" />
+				<h:outputText value="Data Final:" />
+				<p:calendar value="#{usuarioController.data2}" id="popUpData2"
+					pattern="dd/MM/yyyy" locale="pt" required="true"
+					requiredMessage="Data Final Obrigatoria" />
+				<p:commandButton action="#{usuarioController.todosResultsPesq}"
+					value="Pesquisar" ajax="false" />
+			</h:panelGrid>
+
+
+			<p:dataTable id="comprados" var="item"
+				value="#{usuarioController.comprados}" style="width: 450px"
+				rendered="#{usuarioController.existeDados}">
+
+
+
+				<p:column>
+					<f:facet name="header">  
+				             Ped. N.
+				     </f:facet>
+					<h:outputText value="#{item[0]}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">  
+				             Nome
+				     </f:facet>
+					<h:outputText value="#{item[1]}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">  
+				             Data
+				     </f:facet>
+					<h:outputText value="#{item[2]}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">  
+				             Qtd
+				     </f:facet>
+					<h:outputText value="#{item[3]}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">  
+				             Total
+				     </f:facet>
+					<h:outputText value="#{item[4]}">
+						<f:convertNumber type="currency" />
+					</h:outputText>
+				</p:column>
+
+				<f:facet name="footer">
+					<h:outputText value="Resultados encontrados: " />
+					<h:outputText value="#{usuarioController.total}">
+					</h:outputText>
+				</f:facet>
+			</p:dataTable>
+
+			<h:panelGrid columns="5"
+				>
+
+				<f:facet name="footer" style="float: right;">
+					<p:commandButton value="Primeira"
+						action="#{usuarioController.primeiraPagina}" ajax="false" 
+						rendered="#{usuarioController.paginaAtual != 0}"/>
+					<p:commandButton value="Anterior"
+						action="#{usuarioController.anterior}" ajax="false" 
+						rendered="#{usuarioController.paginaAtual != 0}"/>
+					<p:commandButton value="Proxima"
+						action="#{usuarioController.proxima}" ajax="false" 
+						rendered="#{ usuarioController.total > usuarioController.proximaPagina}"/>
+					<p:commandButton value="Ultima"
+						action="#{usuarioController.ultimaPagina}" ajax="false"
+						rendered="#{ usuarioController.total > usuarioController.proximaPagina}" />
+				</f:facet>
+			</h:panelGrid>
+			
+			<h:panelGrid columns="2" cellpadding="5"
+				rendered="#{usuarioController.existeDados}">
+
+				<f:facet name="footer" style="float: right;">
+					<p:commandButton id="comprarMais" value="Gerar Relatorio"
+						action="#{usuarioController.executarRelatorio}" ajax="false" />
+				</f:facet>
+			</h:panelGrid>
+		</ui:define>
+
+	</ui:composition>
+
+</body>
+</html>

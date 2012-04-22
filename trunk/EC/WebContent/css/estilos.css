@@ -1,0 +1,154 @@
+/* CSS Document */
+.ui-widget {
+	font-size: 11px !important;
+	
+}
+html {
+	margin: 0px 0px 1px 0px;
+	padding: 0;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	line-height: 1.0em;
+}
+
+b {
+	font-size: 110%;
+}
+
+em {
+	color: red;
+}
+
+#maincontainer {
+	width: 940px; /*Width of main container*/
+	margin: 0 auto; /*Center container on page*/
+}
+
+#topsection {
+	background: #FFF;
+	height: 140px; /*Height of top section*/
+}
+#menu{
+	background: #FFF;
+	height: 40px;
+}
+
+#topsection h1 {
+	margin: 4px;
+	padding-top: 15px;
+}
+
+#contentwrapper {
+	float: left;
+	width: 100%;
+	background: #FFFFFF;
+}
+
+#contentcolumn {
+	margin-left: 254px; /*Set left margin to LeftColumnWidth*/
+}
+
+#leftcolumn {
+	float: left;
+	width: 250px; /*Width of left column*/
+	margin-left: -940px; /*Set left margin to -(MainContainerWidth)*/
+	background: #FFFFFF;
+}
+
+#leftcolumn ul {
+	list-style: none;
+	margin: 0;
+	padding:0 15px 15px 15px;
+	width:170px;/*determina um tamanho para que o IE nao se confunda*/
+	
+
+}
+#leftcolumn li {
+	margin: 0;
+	/*border-bottom: 1px dotted #CACACA;*/
+}
+#leftcolumn li a {
+	margin: 0;
+	padding:0;
+	text-decoration: none;
+	display: block;
+	background:url(../imagens/site/bg_list.gif) left top no-repeat;
+	background-position:0 5px; text-decoration:none; padding-left:10px;
+}
+#leftcolumn li a:hover {
+	font-weight:bold;
+
+}
+
+
+
+
+
+#footer {
+	 clear: left;
+	/*width: 100%;
+	background: #FFFFFF;
+	color: #FFF;
+	text-align: center;
+	padding: 4px; */
+	background: #FFF;
+	height: 40px; 
+	padding-top: 4px;
+}
+
+#footer a {
+	color: #FFFF80;
+}
+
+.innertube {
+	margin: 1px;
+}
+
+/*-----------------------------------*/
+/* configuracao geral da tag products*/
+/*-----------------------------------*/
+#products {
+	width:475px;
+	padding:0px;
+	float:right;
+	position: relative;
+
+}
+
+#products div {
+	position:relative;
+	top:0px;
+	width:230px;
+	height:180px;
+	vertical-align:top;
+	float:left;
+	margin:0px;
+	padding:0px;
+	display:inline;
+}
+
+#products div table td{
+	vertical-align:top;
+}
+
+
+
+.title{
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.text{
+	font-size: 10px;
+}
+.listprice{
+	text-decoration: line-through;
+	font-size: 10px;
+}
+.price{
+	font-size: 10px;
+	color:red;
+}

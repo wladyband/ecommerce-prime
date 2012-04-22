@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:p="http://primefaces.org/ui" lang="pt-br">
+<h:head>
+	<title><ui:insert name="titulo"></ui:insert>
+	</title>
+	<link href="css/default.css" rel="stylesheet" type="text/css" />
+</h:head>
+
+<body>
+	<h:form id="form1" enctype="multipart/form-data">
+
+		<div id="maincontainer" style="display: block;">
+
+			<div id="topsection">
+				<div class="innertube">
+					<p:panel header="Area Administrativa"
+						footer="Usuario Logado: #{adminController.admin.usuario}">
+
+						<p:growl id="messages" />
+
+						<p:menubar>
+							<p:submenu label="Categorias" icon="ui-icon-pencil">
+								<p:menuitem value="Cadastrar"
+									action="#{categoriaController.novaCat}" ajax="false"
+									icon="ui-icon-arrowreturnthick-1-e" immediate="true" />
+								<p:menuitem value="Exibir" action="mostrarCategorias"
+									ajax="false" icon="ui-icon-arrowreturnthick-1-e"
+									immediate="true" />
+							</p:submenu>
+							<p:submenu label="Produtos" icon="ui-icon-pencil">
+								<p:menuitem value="Cadastrar"
+									action="#{produtoController.novoProd}" ajax="false"
+									icon="ui-icon-arrowreturnthick-1-e" immediate="true" />
+								<p:menuitem value="Exibir" action="mostrarProdutos" ajax="false"
+									icon="ui-icon-arrowreturnthick-1-e" immediate="true" />
+							</p:submenu>
+							<p:submenu label="Compras" icon="ui-icon-pencil">
+								<p:menuitem value="Exibir" action="mostrarCompras" ajax="false"
+									icon="ui-icon-arrowreturnthick-1-e" immediate="true" />
+							</p:submenu>
+
+							<p:menuitem value="Sair" action="#{adminController.logout}"
+								ajax="false" icon="ui-icon-close" immediate="true" />
+						</p:menubar>
+						<br />
+
+						<ui:insert name="conteudo"></ui:insert>
+					</p:panel>
+				</div>
+			</div>
+		</div>
+	</h:form>
+</body>
+
+
+</html>

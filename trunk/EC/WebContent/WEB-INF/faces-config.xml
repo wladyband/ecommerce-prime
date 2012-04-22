@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+
+	<!-- Configura o validador de número de cartão -->
+	<validator>
+		<validator-id>validaCartao</validator-id>
+		<validator-class>br.com.integrator.util.ValidaCartao</validator-class>
+	</validator>
+
+	<lifecycle>
+		<phase-listener>br.com.integrator.util.ForcarLoginPhaseListener</phase-listener>
+	</lifecycle>
+
+	<application>
+		<!-- Configura o Spring 3.1.1 para trabalhar com JSF 2.1.6 -->
+		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+	</application>
+
+	<!-- Navegação de qualquer lugar da administração -->
+	<navigation-rule>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>formProduto</from-outcome>
+			<to-view-id>/admin/formProduto.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>mostrarProdutos</from-outcome>
+			<to-view-id>/admin/mostrarProdutos.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cancelar</from-outcome>
+			<to-view-id>/admin/home.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>formCategoria</from-outcome>
+			<to-view-id>/admin/formCategoria.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>mostrarCategorias</from-outcome>
+			<to-view-id>/admin/mostrarCategorias.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>mostrarCompras</from-outcome>
+			<to-view-id>/admin/mostrarCompras.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<!-- Navegação administrativa do cadastro de categoria -->
+	<navigation-rule>
+		<from-view-id>/admin/formCategoria.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>sucesso</from-outcome>
+			<to-view-id>/admin/mostrarCategorias.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<!-- Navegação administrativa do cadastro de produto -->
+	<navigation-rule>
+		<from-view-id>/admin/formProduto.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>sucesso</from-outcome>
+			<to-view-id>/admin/mostrarProdutos.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<!-- Navegação administrativa da entrada do usuário -->
+	<navigation-rule>
+		<from-view-id>/admin/admin.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>autorizado</from-outcome>
+			<to-view-id>/admin/home.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<!-- Navegação de qualquer lugar do site navega para a página de pesquisa -->
+	<navigation-rule>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>pesquisado</from-outcome>
+			<to-view-id>/pesquisado.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<!-- Navegação para o adicionar ao carrinho de compras -->
+	<navigation-rule>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-action>#{carrinhoController.adicionarAoCarrinho}</from-action>
+			<from-outcome>sucesso</from-outcome>
+			<to-view-id>/carrinho.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<!-- Navegação para a área do usuário -->
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>logado</from-outcome>
+			<to-view-id>/logado.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>logar</from-outcome>
+			<to-view-id>/logar.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/logado.xhtml</from-view-id>
+		<!-- Exibe o formulário com os dados do usuário logado -->
+		<navigation-case>
+			<from-outcome>atualiza</from-outcome>
+			<to-view-id>/form.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<!-- Vai ao formulário para um novo cadastro -->
+	<navigation-rule>
+		<from-view-id>/logar.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>novo</from-outcome>
+			<to-view-id>/form.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<!-- resposta do formulário de contato -->
+	<navigation-rule>
+		<from-view-id>/contato.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>enviado</from-outcome>
+			<to-view-id>/enviado.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+</faces-config>
