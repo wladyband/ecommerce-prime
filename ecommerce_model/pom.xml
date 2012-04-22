@@ -1,0 +1,178 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>br.com.integrator</groupId>
+	<artifactId>ecommerce_model</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>ecommerce_model</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate</artifactId>
+			<version>3.2.5.ga</version>
+		</dependency>
+
+		<dependency>
+			<groupId>hibernate-annotations</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<version>3.3.0.GA</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>ejb3-persistence</artifactId>
+			<version>1.0.2.GA</version>
+		</dependency>
+
+		<dependency>
+			<groupId>hibernate-entitymanager</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>3.3.1.GA</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>jboss</groupId>
+		  <artifactId>jboss-archive-browsing</artifactId>
+		  <version>2.0.2.alpha</version>
+		</dependency>
+
+		<dependency>
+		  <groupId>hibernate-commons-annotations</groupId>
+		  <artifactId>hibernate-commons-annotations</artifactId>
+		  <version>3.0.0.GA</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>c3p0</groupId>
+		  <artifactId>c3p0</artifactId>
+		  <version>0.9.1.2</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>cglib</groupId>
+		  <artifactId>cglib-nodep</artifactId>
+		  <version>2.1_3</version>
+		</dependency>
+
+		<dependency>
+		  <groupId>javassist</groupId>
+		  <artifactId>javassist</artifactId>
+		  <version>3.4.GA</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>org.hibernate</groupId>
+		  <artifactId>hibernate-validator</artifactId>
+		  <version>3.0.0.GA</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<type>jar</type>
+			<version>1.2.16</version>
+			<scope>compile</scope>
+		</dependency>
+
+
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring</artifactId>
+		  <version>2.5.6.SEC03</version>
+		</dependency>
+
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-test</artifactId>
+		  <version>2.5.6</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.4</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+            <groupId>org.easymock</groupId>
+            <artifactId>easymock</artifactId>
+            <version>3.0</version>
+            <type>jar</type>
+            <scope>test</scope>
+        </dependency>
+
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.5</version>
+		</dependency>
+
+	</dependencies>
+	
+	<build> 
+	  <finalName>ecommerce_model</finalName> 
+	  <plugins>
+      <!-- Enabling and configuring regular resources filtering.
+           See also section "resources" below -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.3</version>
+        <configuration>
+          <!-- specify UTF-8, ISO-8859-1 or any other file encoding -->
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
+      
+      <plugin>
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-surefire-plugin</artifactId>
+         <version>2.12</version>
+         <configuration>
+         	<excludes>
+         		<exclude>${exc.class}</exclude>
+         	</excludes>
+         </configuration>
+       </plugin>
+    </plugins>
+   <!-- Instructing the resources plugin to filter certain directories -->
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+  </build> 
+  <!-- Profiles start here --> 
+  <profiles> 
+    <!-- Development environment --> 
+    <profile> 
+      <id>development</id> 
+      <properties> 
+        <exc.class>/</exc.class> 
+      </properties> 
+    </profile> 
+    <!-- Production environment --> 
+    <profile> 
+      <id>production</id> 
+      <properties> 
+        <exc.class>**/br/com/integrator/test/dao/**</exc.class> 
+      </properties> 
+    </profile> 
+  </profiles>
+	
+
+
+</project>
