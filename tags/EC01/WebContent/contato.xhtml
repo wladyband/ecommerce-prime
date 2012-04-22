@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:c="http://java.sun.com/jstl/core"
+	  xmlns:p="http://primefaces.org/ui"
+	  lang="pt-br">
+    <body>
+        
+        <ui:composition template="template/template.xhtml">
+            
+            <ui:define name="titulo">
+               Fale Conosco
+            </ui:define>
+
+            <ui:define name="conteudo">
+            	<p:panel header="Fale Conosco">
+			            <h:panelGrid columns="2" cellpadding="5">
+			            	<h:outputText value="Nome *:" />
+							<p:inputText id="nome"
+								value="#{contatoController.nome}" required="true"
+								size="25">
+							</p:inputText>
+
+			            	<h:outputText value="E-mail *:" />
+							<p:inputText id="email"
+								value="#{contatoController.email}" required="true"
+								size="25">
+							</p:inputText>
+			            	
+			            	<h:outputText value="Assunto *:" />
+							<p:inputText id="assunto"
+								value="#{contatoController.assunto}" required="true"
+								size="25">
+							</p:inputText>
+			            	
+			            	<h:outputText value="Mensagem *:" />
+							<p:inputTextarea rows="5" cols="30" value="#{contatoController.mensagem}"
+								required="true" id="msgem"/>  
+								
+							<f:facet name="footer">
+								<p:commandButton id="confirmar" value="Confirmar"
+									action="#{contatoController.enviar}" ajax="false" />
+							</f:facet>
+			            
+			            </h:panelGrid>
+			            
+            	</p:panel>
+            
+            </ui:define>
+
+        </ui:composition>
+        
+    </body>
+</html>

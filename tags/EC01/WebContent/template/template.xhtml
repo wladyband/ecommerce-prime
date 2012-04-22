@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:p="http://primefaces.org/ui" 
+	lang="pt-br">
+<h:head>
+	<title><ui:insert name="titulo"></ui:insert></title>
+	<link href="css/estilos.css" rel="stylesheet" type="text/css" />
+</h:head>
+
+<body>
+	<h:form id="form1">
+		<p:growl id="messages" />
+		<div id="maincontainer">
+
+			<div id="topsection">
+				<div class="innertube">
+					<p:layout style="min-width:400px;min-height:140px;" id="layoutTop">
+						<p:layoutUnit position="center">  
+					        <h:form id="loginLink">
+								<p:commandButton id="verCarrinho" value="Ver Carrinho" ajax="false"
+									action="carrinho.jsf" immediate="true">
+								</p:commandButton>
+								<p:commandButton id="action" value="Login" ajax="true"
+									onclick="dlg.show()" />
+								<h:panelGrid columns="2" cellpadding="5">
+								<p:selectOneMenu id="idThemes" value="#{layoutBean.theme}">
+									<f:selectItems value="#{layoutBean.listThemes}" />
+								</p:selectOneMenu>
+								<p:commandButton id="trocar" value="trocar" action="#{layoutBean.trocar}"
+												ajax="false"/>
+							</h:panelGrid>
+								
+								
+							</h:form> 
+					    </p:layoutUnit>
+					</p:layout>
+				
+				</div>
+			</div>
+			<div id="menu">
+				<div class="innertube">
+					<p:breadCrumb>  
+					    <p:menuitem value="Home" url="home.jsf" immediate="true" />  
+					    <p:menuitem value="Produtos" url="produtos.jsf" immediate="true" />  
+					    <p:menuitem value="Minha Conta" action="#{usuarioController.logar}" ajax="false" immediate="true" />  
+					    <p:menuitem value="Contato" url="contato.jsf" immediate="true" />  
+					</p:breadCrumb>  
+				</div>
+			</div>
+
+			<div id="contentwrapper">
+				<div id="contentcolumn">
+					<div class="innertube">
+						<ui:insert name="conteudo"></ui:insert>
+					</div>
+				</div>
+			</div>
+
+			<div id="leftcolumn">
+				<div class="innertube">
+					<h:form id="form">
+
+						<p:panel header="Lojas">
+							<ul>
+								<ui:repeat value="#{lojaController.todasCat}" var="item">
+									<li>
+										<a href="prodscat.jsf?cat=#{item.id}">
+											#{item.catNome}
+										</a>
+									</li>
+								</ui:repeat>
+							</ul>
+						</p:panel>
+
+					</h:form>
+				</div>
+			</div>
+
+			<div id="footer">
+				<div class="innertube">
+					<p:layout style="min-width:400px;min-height:40px;" id="layout">
+						<p:layoutUnit position="center">  
+					        footer  
+					    </p:layoutUnit>
+					</p:layout>
+				</div>
+			</div>
+
+		</div>
+	</h:form>
+</body>
+
+<p:growl id="growl" showDetail="true" life="3000" />
+<p:dialog id="dialog" header="Login" widgetVar="dlg" resizable="false">
+	<h:form>
+		<h:panelGrid columns="2" cellpadding="10">
+			<h:outputLabel for="username" value="Username:" />
+			<p:inputText value="#{adminController.admin.usuario}" id="username"
+				required="true" label="username" />
+
+			<h:outputLabel for="password" value="Password:" />
+			<h:inputSecret value="#{adminController.admin.senha}" id="ui-widget"
+				required="true" label="password" />
+
+			<f:facet name="footer">
+				<p:commandButton id="loginButton" value="Login" update=":growl"
+					actionListener="#{adminController.login}"
+					oncomplete="handleLoginRequest(xhr, status, args)" />
+			</f:facet>
+		</h:panelGrid>
+
+	</h:form>
+</p:dialog>
+
+<script type="text/javascript">
+	function handleLoginRequest(xhr, status, args) {
+		if (args.validationFailed || !args.loggedIn) {
+			jQuery('#dialog').effect("shake", {
+				times : 3
+			}, 100);
+		} else {
+			/* dlg.hide();
+			jQuery('#loginLink').fadeOut();
+			jQuery('#maincontainer').fadeIn("slow", function() {
+
+			});*/
+		}
+	}
+</script>
+
+
+
+
+</html>
